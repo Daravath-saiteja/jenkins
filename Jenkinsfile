@@ -1,4 +1,13 @@
-        stage ("terraform init") {
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+            checkout scm
+            }
+        }
+                stage ("terraform init") {
             steps {
                 sh ('terraform init -reconfigure') 
             }
