@@ -34,6 +34,13 @@ resource "aws_instance" "example" {
   key_name = aws_key_pair.example.key_name
   security_groups = [aws_security_group.ssh-access.id]
 
+connection {
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = file("~/.ssh/id_rsa")
+    host        = self.public_ip
+  }
+
  
   user_data = <<-EOF
               #!/bin/bash
