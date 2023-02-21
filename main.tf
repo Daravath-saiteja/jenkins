@@ -22,6 +22,16 @@ resource "aws_instance" "example" {
   instance_type = "t2.micro"              # The instance type
   subnet_id     = "subnet-03a399803c7c6794d"  # The ID of the subnet to launch the instance in
   key_name = aws_key_pair.example.key_name
+
+resource "aws_security_group" "ssh-access" {
+  name_prefix = "ssh-access-"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
  
   user_data = <<-EOF
               #!/bin/bash
