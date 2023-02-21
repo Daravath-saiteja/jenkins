@@ -42,6 +42,12 @@ resource "aws_instance" "example" {
     host        = self.public_ip
   } 
 
+    tags = {
+    Name = "example-instance"
+  }
+
+}
+
 resource "null_resource" "ansible-provisioner" {
   provisioner "file" {
     source = "./playbook.yml"
@@ -69,8 +75,6 @@ resource "null_resource" "ansible-provisioner" {
 
          
 
-  tags = {
-    Name = "example-instance"
-  }
-}
+
+
 
