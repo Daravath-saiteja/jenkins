@@ -29,14 +29,10 @@ resource "aws_instance" "example" {
               apt-get install -y ansible
               EOF
 
-  # provisioner "local-exec" {
-  #   command = "ansible-playbook playbook.yml -i '${self.public_ip},' -u ec2-user --private-key ~/.ssh/mykey.pem"
-  # }
   provisioner "local-exec" {
-    inline = [
-      "ansible-playbook /jenkins-project/jenkins/playbook.yml/playbook.yml"
-    ]
+    command = "ansible-playbook playbook.yml -i '${self.public_ip},' -u ec2-user --private-key ~/.ssh/example-key.pem"
   }
+
          
 
   tags = {
