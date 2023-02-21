@@ -1,0 +1,19 @@
+---
+- name: Create a file
+  hosts: all
+  become: yes
+  vars:
+    file_content: "This is the content of the file."
+  tasks:
+    - name: Create file
+      file:
+        path: /tmp/example_file.txt
+        state: touch
+        mode: 0644
+        owner: root
+        group: root
+
+    - name: Add content to file
+      lineinfile:
+        path: /tmp/example_file.txt
+        line: "{{ file_content }}"
