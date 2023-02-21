@@ -1,7 +1,5 @@
 provider "aws" {
   region = "eu-west-2"
-  shared_config_files = ["/home/daravathsaiteja3/.aws/config"]
-  shared_credentials_files = ["/home/daravathsaiteja3/.aws/credentials"]
 }
 
 resource "aws_instance" "example" {
