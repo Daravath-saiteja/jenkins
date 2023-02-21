@@ -13,11 +13,3 @@ resource "aws_instance" "example" {
   }
 }
 
-resource "aws_s3_bucket" "demo" {
-  bucket = "projectprojectprojectjsbakjfdbvjadb"
-  acl    = "private"
-
-  tags = {
-    Name = "project-delete"
-  }
-}
