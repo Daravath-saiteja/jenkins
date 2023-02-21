@@ -36,6 +36,18 @@ pipeline {
             sh 'terraform apply -auto-approve'
         }
     }
+            stage('Manual Approval for destroy') {
+            steps {
+                input "Apply Terraform changes? (type 'yes' to destroy)"
+            }
+        }
+        
+        stage('Terraform destroy') {
+            steps {
+                
+            sh 'terraform destroy -auto-approve'
+        }
+    }
 }
 
     }
