@@ -18,6 +18,6 @@ resource "aws_s3_bucket" "demo" {
   acl    = "private"
 
   tags = {
-    Name = "project-delete"
+    Name = "project-delete-sai"
   }
 }
