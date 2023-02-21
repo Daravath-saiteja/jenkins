@@ -32,6 +32,7 @@ resource "aws_security_group" "ssh-access" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
  
   user_data = <<-EOF
               #!/bin/bash
@@ -39,7 +40,7 @@ resource "aws_security_group" "ssh-access" {
               apt-get install -y ansible
               EOF
 
-  provisioner "local-exec" {
+provisioner "local-exec" {
     command = "ansible-playbook playbook.yml -i '${self.public_ip},' -u ec2-user --private-key ~/.ssh/example-key.pem"
   }
 
