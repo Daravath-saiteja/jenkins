@@ -27,12 +27,7 @@ resource "aws_security_group" "ssh-access" {
   }
 }
 
-connection {
-    type        = "ssh"
-    user        = "ec2-user"
-    private_key = "~/.ssh/example-key.pem"
-    host        = self.public_ip
-  } 
+
 
 resource "aws_instance" "example" {
   ami           = "ami-09ee0944866c73f62"  # The ID of the Amazon Machine Image (AMI) to use
@@ -40,6 +35,12 @@ resource "aws_instance" "example" {
   subnet_id     = "subnet-03a399803c7c6794d"  # The ID of the subnet to launch the instance in
   key_name = aws_key_pair.example.key_name
   security_groups = [aws_security_group.ssh-access.id]
+  connection {
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = "~/.ssh/example-key.pem"
+    host        = self.public_ip
+  } 
 
  
   user_data = <<-EOF
