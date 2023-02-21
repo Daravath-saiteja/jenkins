@@ -24,11 +24,16 @@ pipeline {
             }
         }
                 
-        stage ("terraform Apply") {
+        stage('Manual Approval') {
             steps {
-                sh ('terraform apply')
- 
-           }
+                input "Apply Terraform changes? (type 'yes' to proceed)"
+            }
+        }
+        
+        stage('Terraform Apply') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform apply -auto-approve tfplan'
         }
     }
 }
