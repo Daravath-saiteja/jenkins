@@ -53,7 +53,7 @@ resource "null_resource" "ansible-provisioner" {
     type        = "ssh"
     user        = "ec2-user"
     private_key = "~/.ssh/example-key.pem"
-    host        = self.public_ip
+    host        = aws_instance.example.public_ip
   } 
   provisioner "file" {
     source = "./playbook.yml"
