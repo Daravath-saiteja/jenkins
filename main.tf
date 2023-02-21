@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_key_pair" "my_key" {
   key_name   = "my_key"
-  public_key = file("~/.ssh/my_key.pem")
+  public_key = file("~/.ssh/my_key.pub")
 }
 
 resource "aws_instance" "example" {
