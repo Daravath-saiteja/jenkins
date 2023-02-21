@@ -43,15 +43,15 @@ resource "aws_instance" "example" {
   } 
 
  
-  user_data = <<-EOF
-              #!/bin/bash
-              apt-get update
-              apt-get install -y ansible
-              EOF
+  # user_data = <<-EOF
+  #             #!/bin/bash
+  #             apt-get update
+  #             apt-get install -y ansible
+  #             EOF
 
-  provisioner "local-exec" {
-    command = "ansible-playbook playbook.yml -i '${self.public_ip},' -u ec2-user --private-key ~/.ssh/example-key.pem"
-  }
+  # provisioner "local-exec" {
+  #   command = "ansible-playbook playbook.yml -i '${self.public_ip},' -u ec2-user --private-key ~/.ssh/example-key.pem"
+  # }
 
          
 
