@@ -42,16 +42,30 @@ resource "aws_instance" "example" {
     host        = self.public_ip
   } 
 
- 
-  user_data = <<-EOF
-              #!/bin/bash
-              apt-get update
-              apt-get install -y ansible
-              EOF
-
-  provisioner "local-exec" {
-    command = "ansible-playbook playbook.yml -i '${self.public_ip},' -u ec2-user --private-key ~/.ssh/example-key.pem"
+resource "null_resource" "ansible-provisioner" {
+  provisioner "file" {
+    source = "./playbook.yml"
+    destination = "/tmp/playbook.yml"
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt update",
+      "sudo apt install -y ansible",
+      "ansible-playbook /tmp/playbook.yml"
+    ]
+  }
+}
+ 
+  # user_data = <<-EOF
+  #             #!/bin/bash
+  #             apt-get update
+  #             apt-get install -y ansible
+  #             EOF
+
+  # provisioner "remote-exec" {
+  #   command = "ansible-playbook playbook.yml -i '${self.public_ip},' -u ec2-user --private-key ~/.ssh/example-key.pem"
+  # }
 
          
 
