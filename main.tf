@@ -30,7 +30,7 @@ resource "aws_security_group" "ssh-access" {
 connection {
     type        = "ssh"
     user        = "ec2-user"
-    private_key = file("~/.ssh/example-key.pem")
+    private_key = "~/.ssh/example-key.pem"
     host        = self.public_ip
   } 
 
