@@ -2,6 +2,7 @@ provider "aws" {
   region = "eu-west-2"
 }
 
+
 resource "tls_private_key" "example" {
   algorithm = "RSA"
   rsa_bits  = 2048
