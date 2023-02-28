@@ -36,12 +36,17 @@ resource "aws_instance" "example" {
   subnet_id     = "subnet-03a399803c7c6794d"  # The ID of the subnet to launch the instance in
   key_name = aws_key_pair.example.key_name
   security_groups = [aws_security_group.ssh-access.id]
-  connection {
+
+  provisioner "file" {
+    source = "./playbook.yml"
+    destination = "/tmp/playbook.yml"
+  }
+    connection {
     type        = "ssh"
     user        = "ec2-user"
     private_key = "~/.ssh/example-key.pem"
     host        = self.public_ip
-  } 
+    } 
 
     tags = {
     Name = "example-instance"
