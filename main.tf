@@ -77,8 +77,6 @@ resource "null_resource" "ansible-provisioner" {
 
 
 #Need to work on ansible 
-#option
- 
   # user_data = <<-EOF
   #             #!/bin/bash
   #             apt-get update
