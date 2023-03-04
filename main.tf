@@ -75,6 +75,7 @@ resource "null_resource" "ansible-provisioner" {
   }
 }
 
+
 #Need to work on ansible 
 #option
  
